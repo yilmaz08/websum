@@ -1,7 +1,10 @@
 [package]
 name = "websum"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
+description = "Next-gen integrity checker written in Rust"
+license = "MIT"
+author = "Abdürrahim YILMAZ <ayilmaz@ayilmaz.xyz>"
 
 [dependencies]
 reqwest = { version = "0.12.5", features = ["blocking"] }
