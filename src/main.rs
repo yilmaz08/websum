@@ -6,6 +6,7 @@ use std::error::Error;
 fn main() -> Result<(), Box<dyn Error>> {
     let path = args().nth(1).expect("No file path provided");
 
+    println!("Processing...");
     let output = Command::new("sha256sum")
         .arg(path)
         .output()
@@ -20,7 +21,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     let stdout = str::from_utf8(&output.stdout).expect("Failed to read stdout");
     let sha256 = stdout.split_whitespace().next().expect("Failed to get sha256sum").to_string().to_uppercase();
     println!("SHA256SUM: {}", sha256);
-    println!("Processing...");
 
     let url = format!("https://raw.githubusercontent.com/yilmaz08/websum/main/archive/{}", sha256);
     
@@ -31,8 +31,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         return Ok(());
     }
 
-    // println!("Response: {:#?}", response);
-    println!("This file is a valid {} file.", response.text()?);
+    println!("This file is a valid \"{}\" file.", response.text()?);
 
-    Ok(())
+    return Ok(());
 }
