@@ -8,6 +8,11 @@ WebSum can be installed with:
 $ cargo install websum
 ```
 (you should add $HOME/.cargo/bin to your PATH if you haven't already)
+
+Alternatively, if you are on Arch Linux, you can install it from the AUR:
+```
+$ yay -S websum-git
+```
 ## How to use
 The usage is pretty much the same as other tools like `sha256sum`
 ```
@@ -17,18 +22,18 @@ Example (Successful):
 ```
 $ websum ./arch.iso
 Processing...
-SHA256SUM: 398DCEEA2D04767FBB8B61A9E824F2C8F5EACF62B2CB5006FD63321D978D48BC
+SHA256: 398DCEEA2D04767FBB8B61A9E824F2C8F5EACF62B2CB5006FD63321D978D48BC
 This file is a valid archlinux-2024.07.01-x86_64.iso file.
 ```
 Example (Unsuccessful):
 ```
 $ websum ./random.iso
 Processing...
-SHA256SUM: 59AFA864CE54B70CADFFE846A251CB8462E868188154CBB1BABFA92BEBF1C2A0
+SHA256: 59AFA864CE54B70CADFFE846A251CB8462E868188154CBB1BABFA92BEBF1C2A0
 This file is not found in our archive! It is either invalid or not in our archive.
 ```
 ## How does it work
-WebSum firstly runs a `sha256sum` on the launch for the specified file.
+WebSum firstly gets the sha256 hash of the file that is given as an argument.
 Then the result sha256 is used to set a url to the `archive` directory in this repository.
 ```
 https://raw.githubusercontent.com/yilmaz08/websum/main/archive/{sha256_hash}

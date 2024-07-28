@@ -19,7 +19,7 @@ fn sha256_digest<R: Read>(mut reader: R) -> Result<Digest, Box<dyn Error>> {
         context.update(&buffer[..count]);
     }
 
-    Ok(context.finish())
+    return Ok(context.finish());
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -33,7 +33,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let sha256 = HEXUPPER.encode(digest.as_ref());
     
-    println!("SHA256SUM: {}", sha256);
+    println!("SHA256: {}", sha256);
 
     let url = format!("https://raw.githubusercontent.com/yilmaz08/websum/main/archive/{}", sha256);
     
