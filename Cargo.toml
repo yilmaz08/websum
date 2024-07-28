@@ -1,6 +1,6 @@
 [package]
 name = "websum"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 description = "Next-gen integrity checker written in Rust"
 license = "MIT"

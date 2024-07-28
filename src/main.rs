@@ -23,7 +23,17 @@ fn sha256_digest<R: Read>(mut reader: R) -> Result<Digest, Box<dyn Error>> {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
+    if args().len() < 2 {
+        eprintln!("Usage: websum <file>");
+        return Ok(());
+    }
+
     let path = args().nth(1).expect("No file path provided");
+
+    if !std::path::Path::new(&path).exists() {
+        eprintln!("The file does not exist!");
+        return Ok(());
+    }
 
     println!("Processing...");
 
