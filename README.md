@@ -3,7 +3,7 @@ WebSum is a next-gen integrity checker written in Rust.
 
 It can be used for finding out what an installation image contains or just validating it!
 ## Installation
-The repository can be cloned with:
+WebSum can be installed with:
 ```
 $ cargo install websum
 ```
@@ -16,15 +16,15 @@ $ websum ./installation.iso
 Example (Successful):
 ```
 $ websum ./arch.iso
-SHA256SUM: 398DCEEA2D04767FBB8B61A9E824F2C8F5EACF62B2CB5006FD63321D978D48BC
 Processing...
+SHA256SUM: 398DCEEA2D04767FBB8B61A9E824F2C8F5EACF62B2CB5006FD63321D978D48BC
 This file is a valid archlinux-2024.07.01-x86_64.iso file.
 ```
 Example (Unsuccessful):
 ```
 $ websum ./random.iso
-SHA256SUM: 59AFA864CE54B70CADFFE846A251CB8462E868188154CBB1BABFA92BEBF1C2A0
 Processing...
+SHA256SUM: 59AFA864CE54B70CADFFE846A251CB8462E868188154CBB1BABFA92BEBF1C2A0
 This file is not found in our archive! It is either invalid or not in our archive.
 ```
 ## How does it work

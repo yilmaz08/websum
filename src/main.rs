@@ -1,25 +1,38 @@
-use std::process::Command;
-use std::str;
-use std::env::args;
-use std::error::Error;
+use std::{
+    env::args,
+    error::Error,
+    fs::File,
+    io::{BufReader, Read},
+};
+use data_encoding::HEXUPPER;
+use ring::digest::{Context, Digest, SHA256};
+
+fn sha256_digest<R: Read>(mut reader: R) -> Result<Digest, Box<dyn Error>> {
+    let mut context = Context::new(&SHA256);
+    let mut buffer = [0; 1024];
+
+    loop {
+        let count = reader.read(&mut buffer)?;
+        if count == 0 {
+            break;
+        }
+        context.update(&buffer[..count]);
+    }
+
+    Ok(context.finish())
+}
 
 fn main() -> Result<(), Box<dyn Error>> {
     let path = args().nth(1).expect("No file path provided");
 
     println!("Processing...");
-    let output = Command::new("sha256sum")
-        .arg(path)
-        .output()
-        .expect("Failed to execute sha256sum");
 
-    if !output.status.success() {
-        let stderr = str::from_utf8(&output.stderr).expect("Failed to read stderr");
-        eprintln!("Error: {}", stderr);
-        return Ok(());
-    }
+    let file = File::open(&path)?;
+    let reader = BufReader::new(file);
+    let digest = sha256_digest(reader)?;
 
-    let stdout = str::from_utf8(&output.stdout).expect("Failed to read stdout");
-    let sha256 = stdout.split_whitespace().next().expect("Failed to get sha256sum").to_string().to_uppercase();
+    let sha256 = HEXUPPER.encode(digest.as_ref());
+    
     println!("SHA256SUM: {}", sha256);
 
     let url = format!("https://raw.githubusercontent.com/yilmaz08/websum/main/archive/{}", sha256);
