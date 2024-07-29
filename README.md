@@ -11,7 +11,7 @@ $ cargo install websum
 
 Alternatively, if you are on Arch Linux, you can install it from the AUR:
 ```
-$ yay -S websum-git
+$ yay -S websum-bin
 ```
 ## How to use
 The usage is pretty much the same as other tools like `sha256sum`
