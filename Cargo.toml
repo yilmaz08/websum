@@ -1,12 +1,13 @@
 [package]
 name = "websum"
-version = "0.2.1"
+version = "0.3.0"
 edition = "2021"
 description = "Next-gen integrity checker written in Rust"
 license = "MIT"
-author = "Abdürrahim YILMAZ <ayilmaz@ayilmaz.xyz>"
+authors = ["Abdürrahim YILMAZ <ayilmaz@ayilmaz.xyz>"]
 
 [dependencies]
 reqwest = { version = "0.12.5", features = ["blocking"] }
+clap = { version = "4.5.11", features = ["derive"] }
 data-encoding = "2.6.0"
 ring = "0.17.8"

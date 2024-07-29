@@ -47,7 +47,7 @@ The archive can also be used manually by getting the hash with sha256 and visiti
 ## Contribution
 WebSum is open source and we welcome any contributions.
 
-You can either improve/fix the code or add/remove/fix hashes from the archive.
+You can either improve/fix the code or update hashes from the archive.
 
 - Open an issue to discuss your proposed changes if it changes the source code. (When you only change the archive, you don't need an issue beforehand.)
 - Fork the repository and make needed changes on the forked repository. (If you split changes into different commits, it would be better.)
