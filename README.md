@@ -34,9 +34,9 @@ This file is not found in our archive! It is either invalid or not in our archiv
 ```
 ## How does it work
 WebSum firstly gets the sha256 hash of the file that is given as an argument.
-Then the result sha256 is used to set a url to the `archive` directory in this repository.
+Then the result sha256 is used to set a url to the `archive` directory in this repository. (if the default server is used)
 ```
-https://raw.githubusercontent.com/yilmaz08/websum/main/archive/{sha256_hash}
+https://raw.githubusercontent.com/yilmaz08/websum/main/archive/%h (%h is replaced with sha256 hash)
 ```
 and if the hash has been saved before, it contains the name of the file inside.
 
