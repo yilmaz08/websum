@@ -3,15 +3,12 @@ WebSum is a next-gen integrity checker written in Rust.
 
 It can be used for finding out what an installation image contains or just validating it!
 ## Installation
-WebSum can be installed with:
 ```
-$ cargo install websum
-```
-(you should add $HOME/.cargo/bin to your PATH if you haven't already)
+# Arch Linux
+yay -S websum
 
-Alternatively, if you are on Arch Linux, you can install it from the AUR:
-```
-$ yay -S websum-bin
+# Other
+cargo install websum
 ```
 ## How to use
 The usage is pretty much the same as other tools like `sha256sum`
