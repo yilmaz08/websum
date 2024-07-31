@@ -7,6 +7,8 @@ use data_encoding::HEXUPPER;
 use ring::digest::{Context, Digest, SHA256};
 use clap::Parser;
 
+static DEFAULT_SERVER: &str = "https://raw.githubusercontent.com/yilmaz08/websum/main/archive/%h";
+
 #[derive(Parser, Debug)]
 #[command(version, about)]
 struct Args {
@@ -15,6 +17,9 @@ struct Args {
 
     #[arg(short, long, help = "Do not print extra information")]
     short: bool,
+
+    #[arg(short='S', long, help = "Custom Server to request, %h will be replaced with the SHA256 hash")]
+    server: Option<String>,
 }
 
 fn sha256_digest<R: Read>(mut reader: R) -> Result<Digest, Box<dyn Error>> {
@@ -61,7 +66,17 @@ fn main() -> Result<(), Box<dyn Error>> {
     if !args.short { println!("SHA256: {}", sha256); }
     
     // Request
-    let url = format!("https://raw.githubusercontent.com/yilmaz08/websum/main/archive/{}", sha256);
+    let server = match args.server.is_some() {
+        true => args.server.unwrap(),
+        false => DEFAULT_SERVER.to_string()
+    };
+    let url = server.replace("%h", &sha256);
+
+    if server == url {
+        if !args.short { eprintln!("URL does not contain a hash! Using WebSum like this might be misleading."); }
+        std::process::exit(1);
+    }
+
     let response = reqwest::blocking::get(url)?;
 
     // UNSUCCESSFUL
