@@ -66,8 +66,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     if !args.short { println!("SHA256: {}", sha256); }
     
     // Request
-    let server = match args.server.is_some() {
-        true => args.server.unwrap(),
+    let server = match args.server.clone().is_some() {
+        true => args.server.clone().unwrap(),
         false => DEFAULT_SERVER.to_string()
     };
     let url = server.replace("%h", &sha256);
@@ -81,7 +81,13 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // UNSUCCESSFUL
     if response.status() == 404 {
-        if !args.short { eprintln!("This file is not found in our archive! It is either invalid or not in our archive."); }
+        if !args.short {
+            if args.server.is_some() {
+                eprintln!("This file is not found in the custom server! It is either invalid or not in the server.");
+            } else {
+                eprintln!("This file is not found in our archive! It is either invalid or not in our archive.");
+            }
+        }
         std::process::exit(1);
     }
 
@@ -91,6 +97,11 @@ fn main() -> Result<(), Box<dyn Error>> {
         return Ok(());
     }
     
+    if args.server.is_some() {
+        println!("This file is a valid \"{}\" file according to the custom server.", response.text()?);
+        return Ok(());
+    }
+
     println!("This file is a valid \"{}\" file.", response.text()?);
     return Ok(());
 }
