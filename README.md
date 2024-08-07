@@ -5,7 +5,7 @@ It can be used for finding out what an installation image contains or just valid
 ## Installation
 ```
 # Arch Linux
-yay -S websum
+yay -S websum-bin
 
 # Other
 cargo install websum
@@ -19,8 +19,8 @@ Example (Successful):
 ```
 $ websum ./arch.iso
 Processing...
-SHA256: 398DCEEA2D04767FBB8B61A9E824F2C8F5EACF62B2CB5006FD63321D978D48BC
-This file is a valid archlinux-2024.07.01-x86_64.iso file.
+SHA256: 55284A14F71DF3E1E45A1E732097F2CA0034C0FC0D912E58812C2EEDEDA0828F
+This file is a valid "archlinux-2024.08.01-x86_64.iso" file.
 ```
 Example (Unsuccessful):
 ```
