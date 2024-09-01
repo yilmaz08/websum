@@ -1,5 +1,6 @@
 {
     // Arch Linux - https://archlinux.org/releng/releases/
+	"archlinux-2024.09.01-x86_64.iso": "1652f3cee1b9857742123d392bb467bc5472ecd59a977bd6e17b7c379607b20c",
     "archlinux-2024.08.01-x86_64.iso": "55284a14f71df3e1e45a1e732097f2ca0034c0fc0d912e58812c2eededa0828f",
     "archlinux-2024.07.01-x86_64.iso": "398dceea2d04767fbb8b61a9e824f2c8f5eacf62b2cb5006fd63321d978d48bc",
     "archlinux-2024.06.01-x86_64.iso": "4cc7e1c9f4e97b384f0d8731f317b5995bde256fcc17160d32359cab923c5892",
